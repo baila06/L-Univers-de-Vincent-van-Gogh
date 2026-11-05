@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>L'Univers de Vincent van Gogh</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="navbar">
+    <a href="#accueil" class="logo"><img src="etoile.png" alt="Logo"></a>
+
+    <div class="barre-droite">
+      <button id="lang-btn" class="flag" aria-label="Changer de langue">
+        <img id="flag-img" src="https://flagcdn.com/w40/fr.png" alt="Français">
+      </button>
+
+      <!-- Bouton hamburger : les 3 traits se transforment en croix -->
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Menu qui glisse depuis la droite -->
+  <div class="menu-fond" id="menu-fond"></div>
+  <nav class="menu" id="menu" aria-label="Menu principal">
+    <ul>
+      <li style="--i:0"><a href="#accueil"><span class="num">01</span><span class="txt" data-fr="Accueil" data-en="Home">Accueil</span></a></li>
+      <li style="--i:1"><a href="#galerie"><span class="num">02</span><span class="txt" data-fr="Galerie" data-en="Gallery">Galerie</span></a></li>
+      <li style="--i:2"><a href="#evenement"><span class="num">03</span><span class="txt" data-fr="Actualités" data-en="News">Actualités</span></a></li>
+      <li style="--i:3"><a href="#plan"><span class="num">04</span><span class="txt" data-fr="A propos" data-en="About">A propos</span></a></li>
+      <li style="--i:4"><a href="#contact"><span class="num">05</span><span class="txt" data-fr="Contact" data-en="Contact">Contact</span></a></li>
+    </ul>
+    <div class="menu-pied">
+      <p class="menu-nom">L'Univers de Vincent van Gogh</p>
+      <a class="menu-mail" href="mailto:contact@exemple.fr">contact@exemple.fr</a>
+    </div>
+  </nav>
+
+  <!-- ============ PAGE D'ACCUEIL (HERO) ============ -->
+  <main id="accueil" class="hero">
+    <canvas id="ciel" aria-hidden="true"></canvas>
+    <div class="hero-lune" aria-hidden="true"></div>
+
+    <div class="hero-contenu">
+      <h1>
+        <span class="h1-petit" data-fr="l'univers de" data-en="the universe of">l'univers de</span>
+        <span class="h1-grand">Vincent van Gogh</span>
+      </h1>
+
+      <p class="hero-sur">1853 – 1890</p>
+
+      <p class="hero-intro"
+         data-fr="Bienvenue dans notre galerie virtuelle dédiée à Vincent van Gogh, l'une des figures les plus fascinantes et influentes de l'histoire de l'art moderne. À travers ses touches de pinceau énergiques, ses couleurs vibrantes et sa vision du monde profondément émouvante, Van Gogh a révolutionné la peinture postimpressionniste en seulement une décennie de création intense. Notre espace a été conçu comme une invitation au voyage : une immersion visuelle et culturelle pour redécouvrir la vie, la technique et l'héritage d'un artiste hors du commun."
+         data-en="Welcome to our virtual gallery dedicated to Vincent van Gogh, one of the most fascinating and influential figures in the history of modern art. Through his energetic brushstrokes, vibrant colors and deeply moving vision of the world, Van Gogh revolutionized post-impressionist painting in just a decade of intense creation. Our space was designed as an invitation to travel: a visual and cultural immersion to rediscover the life, technique and legacy of an extraordinary artist.">Bienvenue dans notre galerie virtuelle dédiée à Vincent van Gogh, l'une des figures les plus fascinantes et influentes de l'histoire de l'art moderne. À travers ses touches de pinceau énergiques, ses couleurs vibrantes et sa vision du monde profondément émouvante, Van Gogh a révolutionné la peinture postimpressionniste en seulement une décennie de création intense. Notre espace a été conçu comme une invitation au voyage : une immersion visuelle et culturelle pour redécouvrir la vie, la technique et l'héritage d'un artiste hors du commun.</p>
+
+      <div class="hero-actions">
+        <a class="btn-hero" href="#galerie" data-fr="Entrer dans la galerie" data-en="Enter the gallery">Entrer dans la galerie</a>
+        <a class="btn-hero-sec" href="#evenement" data-fr="Réserver la nocturne" data-en="Book the nocturne">Réserver la nocturne</a>
+      </div>
+
+    </div>
+
+    <a class="hero-scroll" href="#galerie" aria-label="Descendre">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 9 7 7 7-7"/></svg>
+    </a>
+  </main>
+
+  <!-- Transition : la peinture coule de l'accueil vers la galerie (dessinée par script.js) -->
+  <div class="coulure" id="coulure" aria-hidden="true"><svg id="coulure-svg"></svg></div>
+
+  <!-- Galerie : chevalet + flèches -->
+  <section class="galerie" id="galerie">
+    <button class="fleche" id="prev" aria-label="Œuvre précédente">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4 7 12l8 8"/></svg>
+    </button>
+
+    <div class="chevalet">
+      <img class="chevalet-img" src="chevalet.png" alt="Chevalet">
+      <!-- Les tableaux apparaissent ici, posés sur le chevalet.
+           Pour ajouter tes tableaux : voir le tableau "oeuvres" dans script.js -->
+      <div class="toile-zone" id="zone"></div>
+    </div>
+
+    <button class="fleche" id="next" aria-label="Œuvre suivante">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 4 8 8-8 8"/></svg>
+    </button>
+
+    <p class="legende" id="legende"></p>
+    <!-- Description de l'œuvre (textes dans script.js, tableau "oeuvres") -->
+    <p class="description" id="description"></p>
+  </section>
+
+  <!-- Transition : un chemin en pointillés descend de la galerie jusqu'à la réservation (dessiné par script.js) -->
+  <div class="chemin chemin-resa" id="chemin-resa" aria-hidden="true"><svg id="chemin-resa-svg"></svg></div>
+
+  <!-- ============ ÉVÉNEMENT + RÉSERVATION ============ -->
+  <section class="evenement" id="evenement">
+    <div class="evt-zone">
+    <!-- L'étoile tombe sur la carte, puis la carte s'ouvre en cercle -->
+    <img class="evt-marque" src="etoile.png" alt="" aria-hidden="true">
+    <span class="evt-onde" aria-hidden="true"></span><span class="evt-onde o2" aria-hidden="true"></span>
+    <div class="evt-carte">
+      <div class="evt-info">
+        <span class="evt-badge" data-fr="Événement à venir" data-en="Upcoming event">Événement à venir</span>
+        <h2 data-fr="Nocturne Van Gogh : une nuit étoilée" data-en="Van Gogh Nocturne: A Starry Night">Nocturne Van Gogh : une nuit étoilée</h2>
+        <p data-fr="Une soirée d'exception pour redécouvrir l'œuvre de Van Gogh à la lueur des étoiles : visite commentée par un médiateur, projection immersive de ses plus grands ciels et lecture de passages de ses lettres à son frère Théo. Un verre de bienvenue est offert."
+           data-en="An exceptional evening to rediscover Van Gogh's work by starlight: a guided tour with a cultural mediator, an immersive projection of his greatest skies and readings from his letters to his brother Theo. A welcome drink is included.">Une soirée d'exception pour redécouvrir l'œuvre de Van Gogh à la lueur des étoiles : visite commentée par un médiateur, projection immersive de ses plus grands ciels et lecture de passages de ses lettres à son frère Théo. Un verre de bienvenue est offert.</p>
+        <ul class="evt-details">
+          <li><strong data-fr="Lieu" data-en="Place">Lieu</strong> <span data-fr="Paris 7e, quartier des musées" data-en="Paris 7th, museum district">Paris 7e, quartier des musées</span></li>
+          <li><strong data-fr="Durée" data-en="Duration">Durée</strong> <span data-fr="1h45 environ" data-en="About 1h45">1h45 environ</span></li>
+          <li><strong data-fr="Tarif" data-en="Price">Tarif</strong> <span data-fr="Gratuit, sur réservation" data-en="Free, booking required">Gratuit, sur réservation</span></li>
+        </ul>
+      </div>
+
+      <form class="evt-form" id="form-resa" novalidate>
+        <h3 data-fr="Réserver ma place" data-en="Book my seat">Réserver ma place</h3>
+
+        <label for="resa-nom" data-fr="Nom et prénom" data-en="Full name">Nom et prénom</label>
+        <input type="text" id="resa-nom" required autocomplete="name"
+               data-ph-fr="Ex : Camille Dupont" data-ph-en="E.g. Camille Dupont" placeholder="Ex : Camille Dupont">
+
+        <label for="resa-email" data-fr="Adresse e-mail" data-en="Email address">Adresse e-mail</label>
+        <input type="email" id="resa-email" required autocomplete="email"
+               data-ph-fr="camille@exemple.fr" data-ph-en="camille@example.com" placeholder="camille@exemple.fr">
+
+        <label for="resa-creneau" data-fr="Créneau" data-en="Time slot">Créneau</label>
+        <select id="resa-creneau" required></select>
+
+        <label for="resa-places" data-fr="Nombre de places (6 max.)" data-en="Number of seats (6 max.)">Nombre de places (6 max.)</label>
+        <input type="number" id="resa-places" min="1" max="6" value="1" required>
+
+        <button type="submit" class="btn-resa" data-fr="Confirmer la réservation" data-en="Confirm booking">Confirmer la réservation</button>
+        <p class="resa-msg" id="resa-msg" role="status" aria-live="polite"></p>
+        <p class="resa-demo" data-fr="Démonstration : cette réservation n'est pas enregistrée sur un serveur." data-en="Demo: this booking is not saved on a server.">Démonstration : cette réservation n'est pas enregistrée sur un serveur.</p>
+      </form>
+    </div>
+    </div>
+  </section>
+
+  <!-- Transition : un chemin en pointillés mène jusqu'à la carte (dessiné par script.js) -->
+  <div class="chemin" id="chemin" aria-hidden="true"><svg id="chemin-svg"></svg></div>
+
+  <!-- ============ PLAN / NOUS TROUVER ============ -->
+  <section class="plan" id="plan">
+    <div class="plan-contenu reveal">
+      <div class="plan-texte">
+        <h2 data-fr="Nous trouver" data-en="Find us">Nous trouver</h2>
+        <p class="plan-adresse">1 rue de la Légion d'Honneur<br>75007 Paris</p>
+        <p data-fr="Au cœur du quartier des musées, sur les bords de Seine. Métro Solférino (ligne 12) ou RER C Musée d'Orsay."
+           data-en="In the heart of Paris's museum district, on the banks of the Seine. Metro Solférino (line 12) or RER C Musée d'Orsay.">Au cœur du quartier des musées, sur les bords de Seine. Métro Solférino (ligne 12) ou RER C Musée d'Orsay.</p>
+        <a class="plan-lien" target="_blank" rel="noopener"
+           href="https://www.openstreetmap.org/?mlat=48.8600&mlon=2.3266#map=17/48.8600/2.3266"
+           data-fr="Ouvrir la carte en grand" data-en="Open the full map">Ouvrir la carte en grand</a>
+      </div>
+      <div class="plan-carte">
+        <span class="onde" aria-hidden="true"></span><span class="onde o2" aria-hidden="true"></span>
+        <div class="pin" aria-hidden="true">
+          <svg viewBox="0 0 40 56"><path d="M20 2C10 2 2 10 2 20c0 13 18 34 18 34s18-21 18-34C38 10 30 2 20 2z" fill="#e0453a" stroke="#fff" stroke-width="3"/><circle cx="20" cy="20" r="7" fill="#fff"/></svg>
+        </div>
+        <iframe title="Carte OpenStreetMap" loading="lazy"
+          src="https://www.openstreetmap.org/export/embed.html?bbox=2.3206%2C48.8570%2C2.3326%2C48.8630&layer=mapnik&marker=48.8600%2C2.3266"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PIED DE PAGE ============ -->
+  <footer class="pied" id="contact">
+    <div class="pied-grille">
+      <div class="pied-col">
+        <img class="pied-logo" src="etoile.png" alt="">
+        <p class="pied-nom">L'Univers de Vincent van Gogh</p>
+        <p class="pied-petit" data-fr="Une galerie virtuelle pour redécouvrir la vie, la technique et l'héritage d'un artiste hors du commun." data-en="A virtual gallery to rediscover the life, technique and legacy of an extraordinary artist.">Une galerie virtuelle pour redécouvrir la vie, la technique et l'héritage d'un artiste hors du commun.</p>
+      </div>
+
+      <div class="pied-col">
+        <h4 data-fr="Contactez-nous" data-en="Contact us">Contactez-nous</h4>
+        <p><a href="mailto:contact@exemple.fr">contact@exemple.fr</a></p>
+        <p><a href="tel:+33100000000">+33 1 00 00 00 00</a></p>
+        <div class="reseaux">
+          <!-- Remplace les liens (href) par tes vrais comptes -->
+          <a href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="0.8" class="plein"/></svg>
+          </a>
+          <a href="https://wa.me/33600000000" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-7.7 13.6L3 21l4.5-1.2A9 9 0 1 0 12 3z"/><path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.6-2.1-1-1 .8c-1-.4-2-1.4-2.4-2.4l.8-1-1-2.1z"/></svg>
+          </a>
+          <a href="https://facebook.com/" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M14 8h2.2V5H13.5C11.3 5 10 6.4 10 8.6V11H8v3h2v6h3v-6h2.3l.5-3H13V8.9c0-.6.2-.9 1-.9z"/></svg>
+          </a>
+          <a href="mailto:contact@exemple.fr" aria-label="E-mail">
+            <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 7 8.5 6.5L20.5 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="pied-col">
+        <h4 data-fr="Informations" data-en="Information">Informations</h4>
+        <!-- Remplace "#" par tes vraies pages quand elles existeront -->
+        <p><a href="#" data-fr="Mentions légales" data-en="Legal notice">Mentions légales</a></p>
+        <p><a href="#" data-fr="Conditions générales d'utilisation" data-en="Terms of use">Conditions générales d'utilisation</a></p>
+        <p><a href="#" data-fr="Politique de confidentialité" data-en="Privacy policy">Politique de confidentialité</a></p>
+        <p><a href="#" data-fr="Gestion des cookies" data-en="Cookie settings">Gestion des cookies</a></p>
+      </div>
+    </div>
+    <p class="pied-copy">© <span id="annee">2026</span> L'Univers de Vincent van Gogh
+      <span data-fr="· Tous droits réservés" data-en="· All rights reserved">· Tous droits réservés</span></p>
+  </footer>
+
+
+
+  <script src="script.js"></script>
+</body>
+</html>
